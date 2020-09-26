@@ -1,18 +1,44 @@
-import React from "react";
+import React, { Component } from "react";
 import "./ContentList.scss";
 import NfOriginalCard from "../nf-original-card/NfOriginalCard";
-import IContentListProps from "./content-list.model";
-function ContentList(props: IContentListProps) {
-  return (
-    <div className="content-list">
-      <h2 className="content-title color-white margin-0">{props.title}</h2>
-      <div className="content-items flex">
-        {props.data.map((_, index) => (
-          <NfOriginalCard key={index} />
-        ))}
+import IContentListProps, {
+  IContentData,
+} from "../../models/content-list.model";
+import { contentService } from "../../services/content.service";
+export class ContentList extends Component<IContentListProps, IContentData> {
+  constructor(props: IContentListProps) {
+    super(props);
+    this.state = {
+      results: [],
+      total_results: 0,
+    };
+  }
+  componentDidMount() {
+    const onSuccess = (response: IContentData) => {
+      console.log("response", response);
+      this.setState(response);
+    };
+    const onError = () => {
+      console.log("error occured while fetch data for ", this.props.url);
+    };
+    contentService
+      .fetchContent(this.props.url, this.props.extraData)
+      .then(onSuccess, onError);
+  }
+  render() {
+    return (
+      <div className="content-list">
+        <h2 className="content-title color-white margin-0">
+          {this.props.title}
+        </h2>
+        <div className="content-items flex">
+          {this.state.results.map((content) => (
+            <NfOriginalCard key={content.id} content={content} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ContentList;
