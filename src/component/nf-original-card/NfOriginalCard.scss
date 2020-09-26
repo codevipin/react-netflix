@@ -1,5 +1,9 @@
 .nf-original-card {
+  transition: transform 1s;
   img {
     height: 250px;
+  }
+  &:hover {
+    transform: scale(1.1);
   }
 }
