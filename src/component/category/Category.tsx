@@ -13,6 +13,7 @@ export class Category extends Component {
         <ContentList
           title={CategoryData[Genre.TRENDING].title}
           url={CategoryData[Genre.TRENDING].subUrl}
+          extraData={CategoryData[Genre.TRENDING].extraData}
         />
         <ContentList
           title={CategoryData[Genre.TOP_RATED].title}
@@ -21,30 +22,22 @@ export class Category extends Component {
         <ContentList
           title={CategoryData[Genre.ACTION].title}
           url={CategoryData[Genre.ACTION].subUrl}
-          extraData={{
-            with_generes: CategoryData[Genre.ACTION].extraData.genreCode,
-          }}
+          extraData={CategoryData[Genre.ACTION].extraData}
         />
         <ContentList
           title={CategoryData[Genre.COMEDY].title}
           url={CategoryData[Genre.COMEDY].subUrl}
-          extraData={{
-            with_generes: CategoryData[Genre.COMEDY].extraData.genreCode,
-          }}
+          extraData={CategoryData[Genre.COMEDY].extraData}
         />
         <ContentList
           title={CategoryData[Genre.HORROR].title}
           url={CategoryData[Genre.HORROR].subUrl}
-          extraData={{
-            with_generes: CategoryData[Genre.HORROR].extraData.genreCode,
-          }}
+          extraData={CategoryData[Genre.HORROR].extraData}
         />
         <ContentList
           title={CategoryData[Genre.DOCUMENTRY].title}
           url={CategoryData[Genre.DOCUMENTRY].subUrl}
-          extraData={{
-            with_generes: CategoryData[Genre.DOCUMENTRY].extraData.genreCode,
-          }}
+          extraData={CategoryData[Genre.DOCUMENTRY].extraData}
         />
       </div>
     );

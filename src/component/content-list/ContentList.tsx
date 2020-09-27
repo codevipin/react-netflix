@@ -5,6 +5,8 @@ import IContentListProps, {
   IContentData,
 } from "../../models/content-list.model";
 import { contentService } from "../../services/content.service";
+import { CategoryData } from "../../constants/category.constant";
+import { Genre } from "../../models/category.model";
 export class ContentList extends Component<IContentListProps, IContentData> {
   constructor(props: IContentListProps) {
     super(props);
@@ -33,7 +35,13 @@ export class ContentList extends Component<IContentListProps, IContentData> {
         </h2>
         <div className="content-items flex">
           {this.state.results.map((content) => (
-            <NfOriginalCard key={content.id} content={content} />
+            <NfOriginalCard
+              key={content.id}
+              content={content}
+              isImagePortrait={
+                this.props.title === CategoryData[Genre.ORIGINAL].title
+              }
+            />
           ))}
         </div>
       </div>

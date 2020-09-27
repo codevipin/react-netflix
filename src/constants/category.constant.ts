@@ -8,6 +8,9 @@ export const CategoryData = {
   [Genre.TRENDING]: {
     title: "Trending Now",
     subUrl: "/trending/all/week",
+    extraData: {
+      language: "en-US",
+    },
   },
   [Genre.TOP_RATED]: {
     title: "Top Rated",
@@ -17,28 +20,28 @@ export const CategoryData = {
     title: "Action Movies",
     subUrl: "/discover/movie",
     extraData: {
-      genreCode: 28,
+      with_generes: 28,
     },
   },
   [Genre.COMEDY]: {
     title: "Comedy Movies",
     subUrl: "/discover/movie",
     extraData: {
-      genreCode: 35,
+      with_generes: 35,
     },
   },
   [Genre.HORROR]: {
     title: "Horror Movies",
     subUrl: "/discover/movie",
     extraData: {
-      genreCode: 27,
+      with_generes: 27,
     },
   },
   [Genre.DOCUMENTRY]: {
     title: "Documentaries",
     subUrl: "/discover/movie",
     extraData: {
-      genreCode: 99,
+      with_generes: 99,
     },
   },
 };

@@ -1,7 +1,13 @@
 .nf-original-card {
   transition: transform 0.5s;
   img {
-    height: 250px;
+    object-fit: contain;
+    &.landscape {
+      height: 100px;
+    }
+    &.portrait {
+      height: 250px;
+    }
   }
   &:hover {
     transform: scale(1.1);
