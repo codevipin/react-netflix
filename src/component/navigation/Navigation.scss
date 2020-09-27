@@ -1,13 +1,19 @@
 .navigation {
   padding: 16px;
+  height: 30px;
   position: fixed;
   top: 0;
   z-index: 1;
+  width: 100%;
+  transition-timing-function: ease-in;
+  transition: all 1.5ms;
+  &.nav-black {
+    background-color: #111;
+  }
   .nav-content {
     display: flex;
     justify-content: space-between;
     .nav-logo {
-      position: fixed;
       width: 80px;
       left: 20px;
     }

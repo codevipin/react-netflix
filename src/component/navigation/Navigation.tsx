@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navigation.scss";
 function Navigation() {
+  const [isNavBlack, setBlackNav]: [boolean, Function] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", (event) => {
+      if (window.scrollY > 100) {
+        setBlackNav(true);
+      } else {
+        setBlackNav(false);
+      }
+      return () => {
+        window.removeEventListener("scroll", () => {});
+      };
+    });
+  }, []);
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isNavBlack && "nav-black"}`}>
       <div className="nav-content">
         <img
           alt="netflix logo"
