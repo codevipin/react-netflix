@@ -1,0 +1,59 @@
+.movie-hover-card {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background-color: #191919;
+  color: #ffffff;
+  img {
+    object-fit: cover;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  &.landscape {
+    width: 320px;
+    height: 230px;
+    img {
+      width: 320px;
+      height: 150px;
+    }
+  }
+  &.portrait {
+    width: 200px;
+    height: 300px;
+    img {
+      width: 200px;
+      height: 300px;
+    }
+  }
+  .actions {
+    padding: 8px;
+    * {
+      margin-right: 8px;
+      border-radius: 50%;
+      padding: 8px;
+      border: 3px solid #2a2a2a;
+      color: #ffffff;
+      &:hover {
+        border-color: #ffffff;
+      }
+    }
+  }
+  .fade-bottom {
+    width: 100%;
+    height: 5.4rem;
+    background-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(37, 37, 37, 0.61),
+      #111
+    );
+  }
+  .content-title {
+    margin-left: 8px;
+    h3 {
+      margin-bottom: 8px;
+    }
+  }
+}
