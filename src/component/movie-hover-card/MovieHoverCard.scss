@@ -5,6 +5,9 @@
   border-radius: 8px;
   background-color: #191919;
   color: #ffffff;
+  animation-name: card-animate;
+  animation-duration: 0.5s;
+  cursor: pointer;
   img {
     object-fit: cover;
     border-top-right-radius: 8px;
@@ -54,6 +57,14 @@
     margin-left: 8px;
     h3 {
       margin-bottom: 8px;
+    }
+  }
+  @keyframes card-animate {
+    from {
+      transform: scale(0.8);
+    }
+    to {
+      transform: scale(1);
     }
   }
 }

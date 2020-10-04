@@ -3,12 +3,11 @@ import { createPortal } from "react-dom";
 import "./Modal.scss";
 
 interface ModalProps {
-  canShow: boolean;
   children: ReactNode;
 }
 const modalRoot = document.getElementById("modal-root");
 
-function Modal({ canShow, children }: ModalProps) {
+function Modal({ children }: ModalProps) {
   const el = document.createElement("div");
   useEffect(() => {
     // append to root when the children of Modal are mounted
@@ -20,7 +19,7 @@ function Modal({ canShow, children }: ModalProps) {
     };
   }, [el]);
   // console.log("props children", props);
-  return canShow ? createPortal(children, el) : <></>;
+  return createPortal(children, el);
 }
 
 export default Modal;

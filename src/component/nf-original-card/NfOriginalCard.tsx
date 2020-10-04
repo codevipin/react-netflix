@@ -40,13 +40,15 @@ function NfOriginalCard(props: {
           alt={props.content.original_name}
         />
       </div>
-      <Modal canShow={isHover}>
-        <MovieHoverCard
-          content={props.content}
-          isImagePortrait={props.isImagePortrait}
-          elementId={uniqueElementId}
-        />
-      </Modal>
+      {isHover && (
+        <Modal>
+          <MovieHoverCard
+            content={props.content}
+            isImagePortrait={props.isImagePortrait}
+            elementId={uniqueElementId}
+          />
+        </Modal>
+      )}
     </div>
   );
 }
