@@ -3,6 +3,7 @@ import { IContent } from "../../models/content-list.model";
 import "./NfOriginalCard.scss";
 import Modal from "../../common/components/modal/Modal";
 import MovieHoverCard from "../movie-hover-card/MovieHoverCard";
+import shortid from "shortid";
 
 function NfOriginalCard(props: {
   content: IContent;
@@ -10,22 +11,20 @@ function NfOriginalCard(props: {
 }) {
   const baseImageUrl = "https://image.tmdb.org/t/p/original/";
   const [isHover, setHoverState] = useState(false);
-  const [hoverCardEvent, setHoverCardData] = useState<MouseEvent | null>(null);
 
-  const mouseEnterHandler = (event: React.MouseEvent) => {
-    console.log("content", event.nativeEvent.clientX);
+  const uniqueElementId = shortid.generate();
+
+  const mouseEnterHandler = () => {
     setHoverState(true);
-    setHoverCardData(event.nativeEvent);
   };
 
-  const mouseLeaveHandler = (e: any) => {
-    console.log("content", e.nativeEvent.clientX);
+  const mouseLeaveHandler = () => {
     setHoverState(false);
   };
 
   return (
     <div
-      className="nf-original-card"
+      className={`nf-original-card locate-card-id-${uniqueElementId}`}
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
@@ -44,8 +43,8 @@ function NfOriginalCard(props: {
       <Modal canShow={isHover}>
         <MovieHoverCard
           content={props.content}
-          mouseEventData={hoverCardEvent}
           isImagePortrait={props.isImagePortrait}
+          elementId={uniqueElementId}
         />
       </Modal>
     </div>

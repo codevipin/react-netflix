@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IContent } from "../../models/content-list.model";
 import "./MovieHoverCard.scss";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
@@ -7,24 +7,66 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 interface IHoverCardProps {
   content: IContent;
-  mouseEventData: MouseEvent | null;
   isImagePortrait: boolean;
+  elementId: string;
 }
 function MovieHoverCard({
   content,
-  mouseEventData,
   isImagePortrait,
+  elementId,
 }: IHoverCardProps) {
-  console.log("content.original_name", content, mouseEventData);
   const baseImageUrl = "https://image.tmdb.org/t/p/original/";
+  const [leftDistance, setLeftDistance] = useState(0);
+  const [topDistance, setTopDistance] = useState(0);
+
+  useEffect(() => {
+    const element: HTMLCollection = document.getElementsByClassName(
+      `locate-card-id-${elementId}`
+    );
+    const data = element[0].getBoundingClientRect();
+    const updateTopDistanceFromTargetCenter = (targetTopCenter: number) => {
+      let topPosition = 0;
+      if (isImagePortrait) {
+      } else {
+        topPosition = targetTopCenter - 75;
+      }
+      return topPosition;
+    };
+    const updateLeftDistanceFromTargetCenter = (targetLeftCenter: number) => {
+      let leftPosition = 0;
+      if (isImagePortrait) {
+      } else {
+        if (targetLeftCenter - 160 > 0) {
+          leftPosition = targetLeftCenter - 160;
+        } else {
+          leftPosition = targetLeftCenter - 90;
+        }
+
+        if (window.innerWidth < data.width + data.left) {
+          leftPosition = window.innerWidth - 320;
+        }
+      }
+      console.log("leftPosition", leftPosition);
+      return leftPosition;
+    };
+    console.log("data", data);
+    setLeftDistance(
+      updateLeftDistanceFromTargetCenter(data.left + data.width / 2)
+    );
+    setTopDistance(
+      updateTopDistanceFromTargetCenter(
+        window.scrollY + data.top + data.height / 2
+      )
+    );
+  }, [elementId, isImagePortrait]);
   return (
     <div
       className={`movie-hover-card ${
         isImagePortrait ? "portrait" : "landscape"
       }`}
       style={{
-        top: window.scrollY + Number(mouseEventData?.clientY) - 100,
-        left: Number(mouseEventData?.clientX) - 100,
+        top: topDistance,
+        left: leftDistance,
       }}
     >
       <div className="position-relative">
@@ -41,13 +83,11 @@ function MovieHoverCard({
         </div>
       </div>
       <div className="actions flex">
-        <PlayArrowIcon />
-        <AddIcon />
-        <ThumbUpIcon />
-        <ThumbDownIcon />
+        <PlayArrowIcon fontSize="small" />
+        <AddIcon fontSize="small" />
+        <ThumbUpIcon fontSize="small" />
+        <ThumbDownIcon fontSize="small" />
       </div>
-      {/* MovieHoverCard Comopent - {content.name || content.title}
-      position - {mouseEventData?.clientX} */}
     </div>
   );
 }
