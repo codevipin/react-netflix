@@ -18,8 +18,12 @@ function MovieHoverCard({
   const baseImageUrl = "https://image.tmdb.org/t/p/original/";
   const [leftDistance, setLeftDistance] = useState(0);
   const [topDistance, setTopDistance] = useState(0);
-
+  const heightLandscape: number = 230;
+  const widthLandscape: number = 320;
+  const heightPortrait: number = 370;
+  const widthPortrait: number = 230;
   useEffect(() => {
+    //TODO check if we can use useRef
     const element: HTMLCollection = document.getElementsByClassName(
       `locate-card-id-${elementId}`
     );
@@ -27,33 +31,33 @@ function MovieHoverCard({
     const updateTopDistanceFromTargetCenter = (targetTopCenter: number) => {
       let topPosition = targetTopCenter;
       if (isImagePortrait) {
-        topPosition = targetTopCenter - 185;
+        topPosition = targetTopCenter - heightPortrait / 2;
       } else {
-        topPosition = targetTopCenter - 75;
+        topPosition = targetTopCenter - heightLandscape / 2;
       }
       return topPosition;
     };
     const updateLeftDistanceFromTargetCenter = (targetLeftCenter: number) => {
       let leftPosition = targetLeftCenter;
       if (isImagePortrait) {
-        if (targetLeftCenter - 115 > 0) {
-          leftPosition = targetLeftCenter - 115;
+        if (targetLeftCenter - widthPortrait / 2 > 0) {
+          leftPosition = targetLeftCenter - widthPortrait / 2;
         } else {
           leftPosition = data.left;
         }
 
         if (window.innerWidth < data.width + data.left) {
-          leftPosition = window.innerWidth - 200;
+          leftPosition = window.innerWidth - widthPortrait;
         }
       } else {
-        if (targetLeftCenter - 160 > 0) {
-          leftPosition = targetLeftCenter - 160;
+        if (targetLeftCenter - widthLandscape / 2 > 0) {
+          leftPosition = targetLeftCenter - widthLandscape / 2;
         } else {
           leftPosition = data.left;
         }
 
         if (window.innerWidth < data.width + data.left) {
-          leftPosition = window.innerWidth - 320;
+          leftPosition = window.innerWidth - widthLandscape;
         }
       }
       console.log("leftPosition", leftPosition);
@@ -77,10 +81,14 @@ function MovieHoverCard({
       style={{
         top: topDistance,
         left: leftDistance,
+        height: isImagePortrait ? heightPortrait : heightLandscape,
+        width: isImagePortrait ? widthPortrait : widthLandscape,
       }}
     >
       <div className="position-relative">
         <img
+          height={isImagePortrait ? heightPortrait - 70 : heightLandscape - 80}
+          width={isImagePortrait ? widthPortrait : widthLandscape}
           src={
             baseImageUrl +
             (isImagePortrait ? content.poster_path : content.backdrop_path)
