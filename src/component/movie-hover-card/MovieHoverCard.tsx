@@ -25,21 +25,31 @@ function MovieHoverCard({
     );
     const data = element[0].getBoundingClientRect();
     const updateTopDistanceFromTargetCenter = (targetTopCenter: number) => {
-      let topPosition = 0;
+      let topPosition = targetTopCenter;
       if (isImagePortrait) {
+        topPosition = targetTopCenter - 185;
       } else {
         topPosition = targetTopCenter - 75;
       }
       return topPosition;
     };
     const updateLeftDistanceFromTargetCenter = (targetLeftCenter: number) => {
-      let leftPosition = 0;
+      let leftPosition = targetLeftCenter;
       if (isImagePortrait) {
+        if (targetLeftCenter - 115 > 0) {
+          leftPosition = targetLeftCenter - 115;
+        } else {
+          leftPosition = data.left;
+        }
+
+        if (window.innerWidth < data.width + data.left) {
+          leftPosition = window.innerWidth - 200;
+        }
       } else {
         if (targetLeftCenter - 160 > 0) {
           leftPosition = targetLeftCenter - 160;
         } else {
-          leftPosition = targetLeftCenter - 90;
+          leftPosition = data.left;
         }
 
         if (window.innerWidth < data.width + data.left) {
