@@ -23,7 +23,7 @@ function ContentList(props: IContentListProps) {
     <div className="content-list">
       <h2 className="content-title color-white margin-0">{props.title}</h2>
       <div className="content-items flex">
-        {movies.map((movie) => (
+        {movies.filter(item => !!item.backdrop_path).map((movie) => (
           <NfOriginalCard
             key={movie.id}
             content={movie}

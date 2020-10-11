@@ -20,28 +20,28 @@ export const CategoryData = {
     title: "Action Movies",
     subUrl: "/discover/movie",
     extraData: {
-      with_generes: 28,
+      with_genres: 28,
     },
   },
   [Genre.COMEDY]: {
     title: "Comedy Movies",
     subUrl: "/discover/movie",
     extraData: {
-      with_generes: 35,
+      with_genres: 35,
     },
   },
   [Genre.HORROR]: {
     title: "Horror Movies",
     subUrl: "/discover/movie",
     extraData: {
-      with_generes: 27,
+      with_genres: 27,
     },
   },
   [Genre.DOCUMENTRY]: {
     title: "Documentaries",
     subUrl: "/discover/movie",
     extraData: {
-      with_generes: 99,
+      with_genres: 99,
     },
   },
 };
