@@ -1,0 +1,14 @@
+.footer {
+  color: #7f7878;
+  .author-name {
+    color: #ffffff;
+    margin: 0 4px;
+  }
+  .favorite-icon {
+    color: red;
+    margin: 0 4px;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
