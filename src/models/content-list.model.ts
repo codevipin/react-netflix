@@ -13,6 +13,7 @@ export interface IContent {
   overview: string;
   poster_path: string;
   backdrop_path: string;
+  title?: string;
 }
 
 export interface IContentData {
